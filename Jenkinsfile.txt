@@ -1,0 +1,60 @@
+pipeline {
+    agent any
+   
+ 
+    stages {
+
+        stage("clone repo") {
+            steps {
+                script {
+                    // Let's clone the source
+                    git 'https://github.com/marwamnasri90/Marwadevops-spring-aop.git';
+                }
+            }
+        }
+
+        stage("mvn build") {
+            steps {
+                script {
+                    
+                    sh "mvn package -DskipTests=true"
+                }
+            }
+        }
+
+        stage("mvn clean") {
+            steps {
+                script {
+                    
+                    sh "mvn clean"
+                }
+            }
+        }
+
+        stage("Test stage") {
+            steps {
+                script {
+                   
+                   sh "mvn test"
+                }
+            }
+        }
+
+  	    stage("Sonar metrics") {
+            steps {
+                script {
+                    // this step enable to execute the SonarQube analysis via a regular Maven goal
+                   sh "mvn sonar:sonar "
+                     }
+                }
+            } 
+           
+        stage("Deployment stage") {
+            steps {
+                script {
+                    // this stage deploys the artifact into Nexus repository
+                   sh "mvn deploy"
+                }
+            }
+        }
+          
