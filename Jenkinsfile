@@ -58,8 +58,16 @@ pipeline {
         }
         stage('Build image') {
             steps {
-        		 sh "docker build -t target/ExamThourayaS2-0.0.1-SNAPSHOT.jar ."
+        		 sh "docker build -t marwa98/image1 ."
         	}
-        }  
+        } 
+stage('Push image') {
+  			steps {
+  			    withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
+					sh "docker push marwa98/image1"
+				}
+			}
+        } 
+        
     }   
 }
