@@ -67,7 +67,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry([credentialsId: "dockerhub", url: ""]) {
-                        sh "docker push marwa98/image"
+                        sh "docker push marwa98/image1"
                     }
                 }
             }
