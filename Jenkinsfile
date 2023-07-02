@@ -61,13 +61,7 @@ pipeline {
         		 sh "docker build -t marwa98/image1 ."
         	}
         } 
-stage('Push image') {
-  			steps {
-  			    withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
-					sh "docker push marwa98/image1"
-				}
-			}
-        } 
+
         
     }   
 }
