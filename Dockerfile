@@ -1,4 +1,4 @@
-FROM openjdk:8
-RUN curl -u admin:vagrant -o ExamThourayaS2-1.0.jar "http://172.20.10.7:8081/repository/maven-releases/tn/esprit/exam/ExamThourayaS2/1.0/ExamThourayaS2-1.0.jar" -L
-CMD ["java","-jar","ExamThourayaS2-0.0.1-SNAPSHOT.jar"]
-.
+
+FROM openjdk:8-jdk-alpine
+ADD target/ExamThourayaS2-0.0.1-SNAPSHOT.jar ExamThourayaS2-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java","-jar","/ExamThourayaS2-0.0.1-SNAPSHOT.jar"]
