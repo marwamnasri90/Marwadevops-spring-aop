@@ -1,4 +1,10 @@
 pipeline {
+	environment{
+        registry = "marwa98/image1"
+        TIMESHEET_IMAGE_TAG= "marwa98/image1"
+        registryCredential = 'dockerhub'
+        dockerImage = ''
+    }
     agent any
    
  
@@ -64,7 +70,7 @@ pipeline {
 
         stage('Push image') {
   			steps {
-  			    withDockerRegistry([ credentialsId: "marwa98", url: "" ]) {
+  			    withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
 					sh "docker push marwa98/image1"
 				}
 			}
